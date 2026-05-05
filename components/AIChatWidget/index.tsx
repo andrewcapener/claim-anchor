@@ -84,7 +84,7 @@ export function AIChatWidget() {
             <div className="bg-[#1B3A6B] px-4 py-3 flex items-center justify-between">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center">
-                  <span className="text-base">⚓</span>
+                  <img src="/claim-anchor-icon.svg" alt="" width={18} height={18} style={{ filter: 'brightness(0) invert(1)' }} />
                 </div>
                 <div>
                   <p className="text-white font-semibold text-sm">Alex</p>
@@ -183,16 +183,18 @@ export function AIChatWidget() {
               <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" />
             </motion.svg>
           ) : (
-            <motion.span
+            <motion.img
               key="anchor"
-              className="text-2xl"
+              src="/claim-anchor-icon.svg"
+              alt=""
+              width={28}
+              height={28}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.15 }}
-            >
-              ⚓
-            </motion.span>
+              style={{ filter: 'brightness(0) invert(1)' }}
+            />
           )}
         </AnimatePresence>
       </motion.button>
