@@ -9,7 +9,10 @@ const inter = Inter({
   variable: '--font-inter',
 })
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://claimanchor.net'
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: 'Claim Anchor — Free Accident Case Review',
   description:
     'Were you injured in an accident? Find out in 60 seconds if you qualify for compensation. Free case review, no obligation.',
@@ -18,6 +21,13 @@ export const metadata: Metadata = {
     title: 'Claim Anchor — Were You Injured in an Accident?',
     description: 'Find out in 60 seconds if you qualify for compensation. Free, no obligation.',
     type: 'website',
+    url: siteUrl,
+    siteName: 'Claim Anchor',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Claim Anchor — Free Accident Case Review',
+    description: 'Find out in 60 seconds if you qualify for compensation. Free, no obligation.',
   },
 }
 
