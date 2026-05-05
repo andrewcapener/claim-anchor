@@ -1,6 +1,6 @@
 import { NextRequest } from 'next/server'
 import { streamText, convertToModelMessages, stepCountIs } from 'ai'
-import { createOpenAI } from '@ai-sdk/openai'
+import { createAnthropic } from '@ai-sdk/anthropic'
 import { z } from 'zod'
 
 const SYSTEM_PROMPT = `You are Alex, a helpful intake specialist for Claim Anchor, a free legal case review service.
@@ -23,7 +23,7 @@ If they don't qualify (have attorney, own fault, no accident), be gracious and w
 Keep responses SHORT — 1-3 sentences max. This is a chat, not an essay.`
 
 export async function POST(request: NextRequest) {
-  const apiKey = process.env.OPENAI_API_KEY
+  const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
     return Response.json({ error: 'AI chat not configured' }, { status: 503 })
   }
@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
     return Response.json({ error: 'Invalid JSON' }, { status: 400 })
   }
 
-  const openai = createOpenAI({ apiKey })
+  const anthropic = createAnthropic({ apiKey })
 
   const rawMessages = (body as { messages?: unknown[] })?.messages ?? []
   const messages = await convertToModelMessages(
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
   )
 
   const result = streamText({
-    model: openai('gpt-4o-mini'),
+    model: anthropic('claude-haiku-4-5-20251001'),
     system: SYSTEM_PROMPT,
     messages,
     tools: {
