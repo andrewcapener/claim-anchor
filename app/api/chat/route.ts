@@ -42,6 +42,7 @@ export async function POST(request: NextRequest) {
     rawMessages as Parameters<typeof convertToModelMessages>[0]
   )
 
+  try {
   const result = streamText({
     model: anthropic('claude-haiku-4-5-20251001'),
     system: SYSTEM_PROMPT,
@@ -94,4 +95,9 @@ export async function POST(request: NextRequest) {
   })
 
   return result.toTextStreamResponse()
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err)
+    console.error('[chat]', msg)
+    return Response.json({ error: msg }, { status: 500 })
+  }
 }
