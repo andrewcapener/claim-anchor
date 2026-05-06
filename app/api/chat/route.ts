@@ -1,3 +1,5 @@
+export const runtime = 'edge'
+
 import { NextRequest } from 'next/server'
 import { streamText, convertToModelMessages, stepCountIs } from 'ai'
 import { createAnthropic } from '@ai-sdk/anthropic'
