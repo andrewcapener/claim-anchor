@@ -6,14 +6,14 @@ export function StickyCTA() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const hero = document.querySelector('section')
-    if (!hero) return
+    const form = document.getElementById('lead-form')
+    if (!form) return
 
     const observer = new IntersectionObserver(
       ([entry]) => setVisible(!entry.isIntersecting),
-      { threshold: 0 }
+      { threshold: 0.1 }
     )
-    observer.observe(hero)
+    observer.observe(form)
     return () => observer.disconnect()
   }, [])
 

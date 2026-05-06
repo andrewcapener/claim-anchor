@@ -44,7 +44,7 @@ export function Hero() {
   const { count, ref } = useCountUp(TARGET_COUNT)
 
   return (
-    <section id="lead-form" className="relative bg-white overflow-hidden">
+    <section id="hero" className="relative bg-white overflow-hidden">
       {/* Subtle bg texture */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] opacity-[0.025] pointer-events-none select-none" aria-hidden="true">
         <svg viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
